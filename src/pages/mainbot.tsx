@@ -44,7 +44,7 @@ export default function Bot() {
             </div>
 
             <div id="searchbox-wrap">
-                <textarea id="messageBox" placeholder="Message KlimGPT..."></textarea>
+                <input id="messageBox" type="text" placeholder="Message KlimGPT..."></input>
                 <button id="sendMessageButton"><HiArrowUp id="hiArrowUp"/></button>
             </div>
         </div>
