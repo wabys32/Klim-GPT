@@ -3,5 +3,255 @@
 @tailwind utilities;
 
 body {
-    background-color: #424242;
+    background-color: #ebebeb;
+}
+
+body {
+    overflow: hidden;
+    font-family: Segoe UI;
+    margin: 0;
+    padding: 0;
+}
+
+::selection {
+    color: black;
+    background: #d4d4d4;
+}
+
+#searchbox-wrap {
+    display: flex;
+    user-select: none;
+    width: 20%;
+    position: absolute;
+    bottom: 20px;
+    left: 45%;
+}
+
+#messageBox {
+    outline: none;
+    color: #2e2e2e;
+    flex: 1;
+    padding: 4% 20px;
+    font-size: 1em;
+    box-shadow: none;
+    border: none;
+    border-radius: 18px 0 0 18px;
+    border: .5px solid rgb(208, 208, 208);
+}
+
+#messageBox:hover {
+    border: .5px solid rgb(170, 170, 170);
+}
+
+#messageBox:hover~#sendMessageButton {
+    border-top: .5px solid rgb(170, 170, 170);
+    border-right: .5px solid rgb(170, 170, 170);
+    border-bottom: .5px solid rgb(170, 170, 170);
+}
+
+#messageBox:focus {
+    border: .5px solid rgb(170, 170, 170);
+}
+
+#messageBox:focus~#sendMessageButton {
+    border-top: .5px solid rgb(170, 170, 170);
+    border-right: .5px solid rgb(170, 170, 170);
+    border-bottom: .5px solid rgb(170, 170, 170);
+}
+
+#sendMessageButton {
+    padding-right: 0;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 18px 18px 0;
+    border-top: .5px solid rgb(208, 208, 208);
+    border-right: .5px solid rgb(208, 208, 208);
+    border-bottom: .5px solid rgb(208, 208, 208);
+    margin-left: -1px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sendMessageButton:hover {
+    #hiArrowUp {
+        color: grey;
+    }
+}
+
+
+
+
+#leftPanel {
+    background-color: #F9F9F9;
+    position: absolute;
+    width: 288px;
+    height: 100%;
+    margin: 0;
+}
+
+#messagesContainer {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    height: 84%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    overflow: auto;
+    top: 55px;
+}
+
+.msg {
+    position: relative;
+    margin-top: 5px;
+    width: 96%;
+    padding: 2%;
+}
+
+.bmsg {
+    position: relative;
+    margin-top: 5px;
+    word-break: break-all;
+    background-color: #F7F7F8;
+    width: 96%;
+    padding: 2%;
+}
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #9c9c9c;
+    border-radius: 99px;
+    margin: 20px;
+    border: 2px solid #f1f1f1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #8e8e8e;
+}
+
+
+/*Custom select*/
+
+select {
+    position: absolute;
+    padding: 11px;
+    padding-left: 13px;
+    padding-right: 13px;
+    font-size: 18px;
+    border-radius: 12px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    left: 295px;
+    top: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+select:hover {
+    background-color: #F9F9F9;
+}
+
+#new_chat {
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 12px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 94%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 3%;
+    user-select: none;
+    font-family: Monospace;
+    cursor: pointer;
+}
+
+#new_chat:hover {
+    animation: scaleDown .1s forwards linear;
+}
+
+
+#p1 {
+    margin-left: 12px;
+}
+
+#p2 {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    right: 30px;
+}
+
+#logo1 {
+    margin-left: 13px;
+    height: 26px;
+    border-radius: 999px;
+    border: 1.5px solid rgb(215, 215, 215)
+}
+
+#left_panel_buton {
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 12px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 94%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 3%;
+    user-select: none;
+    font-family: Monospace;
+    cursor: pointer;
+}
+
+#left_panel_buton {
+    transition: background-color 0.1s linear, transform 0.1s linear;
+}
+
+
+#left_panel_buton {
+    transition: transform 0.1s linear, background-color 0.1s linear;
+}
+
+#left_panel_buton:hover {
+    transform: scale(0.97);
+    background-color: rgb(232, 232, 232);
+}
+
+#left_panel_buton:active {
+    transform: scale(0.94);
+    background-color: rgb(210, 210, 210);
+}
+
+#left_panel_buton {
+    transform: scale(1);
+    background-color: transparent;
+}
+
+
+#NewKlim1 {
+    border-radius: 20px;
+    margin-left: 9px;
 }
