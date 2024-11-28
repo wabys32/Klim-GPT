@@ -1,7 +1,7 @@
-import Button from "@/Components/button";
+import Bot from "@/pages/mainbot";
 
 export default function Home(){
   return(
-    <Button/>
+    <Bot/>
   )
 }
