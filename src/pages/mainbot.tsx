@@ -1,11 +1,45 @@
+"use client";
+
 import '../app/global.css';
-import Image from 'next/image'
+import Image from 'next/image';
+import { useState } from 'react';
 import { HiArrowUp } from "react-icons/hi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
-
 export default function Bot() {
+    const [messages, setMessages] = useState([]);
+
+    const sendMessage = async () => {
+        const messageBox = document.getElementById('messageBox') as HTMLInputElement;
+        const message = messageBox.value;
+
+        if (!message.trim()) return;
+
+        // Добавляем сообщение пользователя
+        setMessages((prev) => [...prev, { text: message, sender: 'user' }]);
+        messageBox.value = '';
+
+        try {
+            // Отправляем сообщение в API
+            const response = await fetch('/api/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send message');
+            }
+
+            const data = await response.json();
+            // Добавляем ответ бота
+            setMessages((prev) => [...prev, { text: data.response, sender: 'bot' }]);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div>
             <div id="leftPanel">
@@ -29,7 +63,7 @@ export default function Bot() {
                         id="NewKlim1"
                     />
                     <p id="p1">Klimoclopedia</p>
-                    <HiOutlineDocumentText id="p2"/>
+                    <HiOutlineDocumentText id="p2" />
                 </button>
             </div>
             <div>
@@ -40,12 +74,18 @@ export default function Bot() {
             </div>
 
             <div id="messagesContainer">
-                {/* <!--<div class="msg">Some message</div>--> */}
+                {messages.map((msg, index) => (
+                    <div key={index} className={`msg ${msg.sender}`}>
+                        {msg.text}
+                    </div>
+                ))}
             </div>
 
             <div id="searchbox-wrap">
-                <input id="messageBox" type="text" placeholder="Message KlimGPT..."></input>
-                <button id="sendMessageButton"><HiArrowUp id="hiArrowUp"/></button>
+                <input id="messageBox" type="text" placeholder="Message KlimGPT..." />
+                <button id="sendMessageButton" onClick={sendMessage}>
+                    <HiArrowUp id="hiArrowUp" />
+                </button>
             </div>
         </div>
     );
