@@ -7,12 +7,14 @@ import { HiArrowUp } from "react-icons/hi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
+// Define the message structure
 type Message = {
     text: string;
     sender: 'user' | 'bot';
 };
 
 export default function Bot() {
+    // Explicitly type the messages state
     const [messages, setMessages] = useState<Message[]>([]);
 
     const sendMessage = async () => {
@@ -22,7 +24,7 @@ export default function Bot() {
         if (!message.trim()) return;
 
         // Add user message
-        setMessages((prev) => [...prev, { text: message, sender: 'user' }]);
+        setMessages((prev: Message[]) => [...prev, { text: message, sender: 'user' }]);
         messageBox.value = '';
 
         try {
@@ -39,7 +41,7 @@ export default function Bot() {
 
             const data = await response.json();
             // Add bot response
-            setMessages((prev) => [...prev, { text: data.response, sender: 'bot' }]);
+            setMessages((prev: Message[]) => [...prev, { text: data.response, sender: 'bot' }]);
         } catch (error) {
             console.error(error);
         }
