@@ -14,7 +14,7 @@ type Message = {
 };
 
 export default function Bot() {
-    // Explicitly specify the type for messages state
+    // Explicitly type the messages state
     const [messages, setMessages] = useState<Message[]>([]);
 
     const sendMessage = async () => {
@@ -24,7 +24,7 @@ export default function Bot() {
         if (!message.trim()) return;
 
         // Add user message
-        setMessages((prev: Message[]) => [...prev, { text: message, sender: 'user' }]);
+        setMessages((prev) => [...prev, { text: message, sender: 'user' }]);
         messageBox.value = '';
 
         try {
@@ -41,7 +41,7 @@ export default function Bot() {
 
             const data = await response.json();
             // Add bot response
-            setMessages((prev: Message[]) => [...prev, { text: data.response, sender: 'bot' }]);
+            setMessages((prev) => [...prev, { text: data.response, sender: 'bot' }]);
         } catch (error) {
             console.error(error);
         }
