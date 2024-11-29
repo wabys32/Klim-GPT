@@ -7,15 +7,15 @@ import { HiArrowUp } from "react-icons/hi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
-// Define the message structure
-type Message = {
+// Define the type for the state
+interface Message {
     text: string;
     sender: 'user' | 'bot';
-};
+}
 
 export default function Bot() {
-    // Explicitly type the messages state
-    const [messages, setMessages] = useState<Message[]>([]);
+    // Explicitly define the type of the state
+    const [messages, setMessages] = useState<Array<Message>>([]);
 
     const sendMessage = async () => {
         const messageBox = document.getElementById('messageBox') as HTMLInputElement;
@@ -23,12 +23,12 @@ export default function Bot() {
 
         if (!message.trim()) return;
 
-        // Add user message
-        setMessages((prev) => [...prev, { text: message, sender: 'user' }]);
+        // Add user message to state
+        setMessages((prevMessages) => [...prevMessages, { text: message, sender: 'user' }]);
         messageBox.value = '';
 
         try {
-            // Send message to API
+            // Send the message to an API
             const response = await fetch('/api/sendMessage', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -40,8 +40,9 @@ export default function Bot() {
             }
 
             const data = await response.json();
-            // Add bot response
-            setMessages((prev) => [...prev, { text: data.response, sender: 'bot' }]);
+
+            // Add bot response to state
+            setMessages((prevMessages) => [...prevMessages, { text: data.response, sender: 'bot' }]);
         } catch (error) {
             console.error(error);
         }
