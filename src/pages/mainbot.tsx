@@ -9,7 +9,7 @@ import { HiOutlineDocumentText } from "react-icons/hi";
 
 // Define the type for the state
 interface Message {
-    text: string;
+    text: string[];
     sender: 'user' | 'bot';
 }
 
@@ -23,8 +23,8 @@ export default function Bot() {
 
         if (!message.trim()) return;
 
-        // Add user message to state
-        setMessages((prevMessages) => [...prevMessages, { text: message, sender: 'user' }]);
+        // Wrap the message in an array to match the updated type
+        setMessages((prevMessages) => [...prevMessages, { text: [message], sender: 'user' }]);
         messageBox.value = '';
 
         try {
@@ -41,8 +41,8 @@ export default function Bot() {
 
             const data = await response.json();
 
-            // Add bot response to state
-            setMessages((prevMessages) => [...prevMessages, { text: data.response, sender: 'bot' }]);
+            // Wrap the bot response in an array
+            setMessages((prevMessages) => [...prevMessages, { text: [data.response], sender: 'bot' }]);
         } catch (error) {
             console.error(error);
         }
