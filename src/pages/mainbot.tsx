@@ -7,8 +7,13 @@ import { HiArrowUp } from "react-icons/hi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
+type Message = {
+    text: string;
+    sender: 'user' | 'bot';
+};
+
 export default function Bot() {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<Message[]>([]);
 
     const sendMessage = async () => {
         const messageBox = document.getElementById('messageBox') as HTMLInputElement;
@@ -16,12 +21,12 @@ export default function Bot() {
 
         if (!message.trim()) return;
 
-        // Добавляем сообщение пользователя
+        // Add user message
         setMessages((prev) => [...prev, { text: message, sender: 'user' }]);
         messageBox.value = '';
 
         try {
-            // Отправляем сообщение в API
+            // Send message to API
             const response = await fetch('/api/sendMessage', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -33,7 +38,7 @@ export default function Bot() {
             }
 
             const data = await response.json();
-            // Добавляем ответ бота
+            // Add bot response
             setMessages((prev) => [...prev, { text: data.response, sender: 'bot' }]);
         } catch (error) {
             console.error(error);
