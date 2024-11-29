@@ -14,7 +14,7 @@ type Message = {
 };
 
 export default function Bot() {
-    // Explicitly type the messages state
+    // Explicitly specify the type for messages state
     const [messages, setMessages] = useState<Message[]>([]);
 
     const sendMessage = async () => {
