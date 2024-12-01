@@ -68,7 +68,7 @@ export default function Bot() {
     return (
         <div>
             <div id="leftPanel">
-                <button id="left_panel_buton">
+                <button id="left_panel_buton" onClick={() => window.location.reload()}>
                     <Image
                         src="/klim1.jpg"
                         width={30}
