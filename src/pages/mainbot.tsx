@@ -15,6 +15,13 @@ interface Message {
 
 export default function Bot() {
     // Explicitly define the type of the state
+
+    document.addEventListener("keyup", (event: KeyboardEvent) => {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      });
+      
     const [messages, setMessages] = useState<Array<Message>>([]);
 
     const sendMessage = async () => {
