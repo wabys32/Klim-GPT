@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { HiArrowUp } from "react-icons/hi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlineDocumentText } from "react-icons/hi";
+import { useEffect } from "react";
 
 // Define the type for the state
 interface Message {
@@ -14,14 +15,23 @@ interface Message {
 }
 
 export default function Bot() {
-    // Explicitly define the type of the state
+    
 
-    document.addEventListener("keyup", (event: KeyboardEvent) => {
-        if (event.key === "Enter") {
-          sendMessage();
-        }
-      });
-      
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+          if (event.key === "Enter") {
+            sendMessage();
+          }
+        };
+    
+        document.addEventListener("keydown", handleKeyDown);
+    
+        return () => {
+          document.removeEventListener("keydown", handleKeyDown);
+        };
+      }, []);
+
+    // Explicitly define the type of the state
     const [messages, setMessages] = useState<Array<Message>>([]);
 
     const sendMessage = async () => {
