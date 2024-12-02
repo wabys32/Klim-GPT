@@ -319,7 +319,7 @@ select:hover {
         transform: translateX(-100%);
     }
     #searchbox-wrap {
-        left: 30% !important;
+        left: 26% !important;
     }
 }
 @media (min-width: 769px) {
