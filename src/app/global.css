@@ -38,15 +38,6 @@ body {
     background: #d4d4d4;
 }
 
-#searchbox-wrap {
-    display: flex;
-    user-select: none;
-    width: 20vw;
-    height: 7vh;
-    position: absolute;
-    bottom: 20px;
-    left: 45%;
-}
 
 #messageBox {
     
@@ -91,7 +82,9 @@ body {
     border-right: .5px solid rgb(208, 208, 208);
     border-bottom: .5px solid rgb(208, 208, 208);
     margin-left: -1px;
-    width: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,17 +94,6 @@ body {
     #hiArrowUp {
         color: grey;
     }
-}
-
-
-
-
-#leftPanel {
-    background-color: #F9F9F9;
-    position: absolute;
-    width: 288px;
-    height: 100%;
-    margin: 0;
 }
 
 #messagesContainer {
@@ -276,4 +258,84 @@ select:hover {
 #NewKlim1 {
     border-radius: 20px;
     margin-left: 9px;
+}
+
+
+#leftPanel {
+    background-color: #F9F9F9;
+    position: fixed;
+    width: 288px;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+#leftPanel.open {
+    transform: translateX(0);
+}
+
+#leftPanel.closed {
+    transform: translateX(-100%);
+}
+
+#left_panel_button {
+    position: fixed;
+    top: 10px;
+    left: 310px;
+    z-index: 1000;
+    padding: 12px;
+    cursor: pointer;
+
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    user-select: none;
+    font-family: Monospace;
+}
+
+#left_panel_button:hover {
+    background: #f1f1f1;
+}
+
+#klim_version{
+    position: absolute;
+    left: 70px;
+}
+
+#searchbox-wrap {
+    display: flex;
+    user-select: none;
+    width: 38%;
+    height: 60px;
+    position: absolute;
+    bottom: 30px;
+    left: 38%;
+}
+
+@media (max-width: 768px) {
+    #leftPanel.open {
+        transform: translateX(-100%);
+    }
+    #searchbox-wrap {
+        left: 30% !important;
+    }
+}
+@media (min-width: 769px) {
+    #leftPanel.open {
+        transform: translateX(0%);
+    }
+}
+
+@media (max-width: 1200px) {
+    #searchbox-wrap {
+        left: 42%;
+    }
+}
+
+@media (max-width: 1000px) {
+    #searchbox-wrap {
+        left: 50%;
+    }
 }

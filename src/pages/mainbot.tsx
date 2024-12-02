@@ -7,6 +7,8 @@ import { HiArrowUp } from "react-icons/hi";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { useEffect } from "react";
+import { FiList } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 
 // Define the type for the state
 interface Message {
@@ -65,38 +67,45 @@ export default function Bot() {
         }
     };
 
+    const [isPanelOpen, setIsPanelOpen] = useState(true); // Управление состоянием панели
+
+    const togglePanel = () => {
+        setIsPanelOpen(!isPanelOpen);
+    };
+
+
     return (
         <div>
-            <div id="leftPanel">
-                <button id="left_panel_buton" onClick={() => window.location.reload()}>
-                    <Image
-                        src="/klim1.jpg"
-                        width={30}
-                        height={15}
-                        alt="Klim"
-                        id="NewKlim1"
-                    />
-                    <p id="p1">New Klim</p>
-                    <HiOutlinePencilAlt id="p2" />
-                </button>
-                <button id="left_panel_buton">
-                    <Image
-                        src="/klim1.jpg"
-                        width={30}
-                        height={15}
-                        alt="Klim"
-                        id="NewKlim1"
-                    />
-                    <p id="p1">Klimoclopedia</p>
-                    <HiOutlineDocumentText id="p2" />
-                </button>
-            </div>
-            <div>
+            <div id="leftPanel" className={isPanelOpen ? 'open' : 'closed'}>
+            <button id="left_panel_button" onClick={togglePanel}>
+                {isPanelOpen ? <FiX /> : <FiList />}
+            </button>
+            <div id="klim_version">
                 <select>
                     <option value="0">KlimGPT 2.0</option>
                     <option value="1">KlimGPT 1.0</option>
                 </select>
             </div>
+            
+            {isPanelOpen && (
+                <>
+                    <button id="left_panel_buton" onClick={() => window.location.reload()}>
+                        <Image src="/klim1.jpg" width={30} height={15} alt="Klim" id="NewKlim1" />
+                        <p id="p1">New Klim</p>
+                        <HiOutlinePencilAlt id="p2" />
+                    </button>
+                    <button id="left_panel_buton">
+                        <Image src="/klim1.jpg" width={30} height={15} alt="Klim" id="NewKlim1" />
+                        <p id="p1">Klimoclopedia</p>
+                        <HiOutlineDocumentText id="p2" />
+                    </button>
+                </>
+            )}
+        </div>
+
+            
+
+            
 
             <div id="messagesContainer">
             {messages.map((msg, index) => (
@@ -110,7 +119,7 @@ export default function Bot() {
                     )}
                 </div>
             ))}
-        </div>
+            </div>
 
             <div id="searchbox-wrap">
                 <input id="messageBox" type="text" placeholder="Message KlimGPT..." />
