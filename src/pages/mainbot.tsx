@@ -99,12 +99,18 @@ export default function Bot() {
             </div>
 
             <div id="messagesContainer">
-                {messages.map((msg, index) => (
-                    <div key={index} className={`msg ${msg.sender}`}>
-                        {msg.text}
-                    </div>
-                ))}
-            </div>
+            {messages.map((msg, index) => (
+                <div key={index} className={`msg ${msg.sender}`}>
+                    {msg.sender === 'bot' ? (
+                        // Используем dangerouslySetInnerHTML для рендеринга HTML
+                        <div dangerouslySetInnerHTML={{ __html: msg.text[0] }} />
+                    ) : (
+                        // Рендерим текст пользователя как обычный текст
+                        msg.text
+                    )}
+                </div>
+            ))}
+        </div>
 
             <div id="searchbox-wrap">
                 <input id="messageBox" type="text" placeholder="Message KlimGPT..." />
