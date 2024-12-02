@@ -319,7 +319,7 @@ select:hover {
         transform: translateX(-100%);
     }
     #searchbox-wrap {
-        left: 26% !important;
+        left: 23% !important;
     }
 }
 @media (min-width: 769px) {
@@ -338,4 +338,13 @@ select:hover {
     #searchbox-wrap {
         left: 50%;
     }
+}
+
+#commands{
+    position: absolute;
+    bottom: -22px;
+    color: #8e8e8e;
+    font-size: 14px;
+    width: 98%;
+    text-align: center;
 }

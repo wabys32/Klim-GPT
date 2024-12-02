@@ -126,6 +126,7 @@ export default function Bot() {
                 <button id="sendMessageButton" onClick={sendMessage}>
                     <HiArrowUp id="hiArrowUp" />
                 </button>
+                <p id="commands">/Цитата Стетхема</p>
             </div>
         </div>
     );
