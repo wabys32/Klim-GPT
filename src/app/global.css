@@ -340,6 +340,18 @@ select:hover {
     }
 }
 
+@media (min-width: 1000px) and (max-width: 1350px){
+    #messagesContainer {
+        left: 35%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1000px){
+    #messagesContainer {
+        left: 40%;
+    }
+}
+
 #commands{
     position: absolute;
     bottom: -22px;
